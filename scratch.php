@@ -4,7 +4,7 @@
  * @param $lon Float longitude of inputted location
  * @param $radiusConstraintLower Float constraint on how far random location must be
  * @param $radiusConstraintUpper Float constraint on how far the random location may be
- * @return float|int Returns random lat and lon within constraint parameters
+ * @return false|mixed|string|void Returns random lat and lon within constraint parameters
  * @throws Exception Error when distance random Lat/Lon cannot be calculated for desired parameters
  */
 function randomize_geoLocation($lat, $lon, $radiusConstraintLower, $radiusConstraintUpper)
@@ -16,11 +16,18 @@ function randomize_geoLocation($lat, $lon, $radiusConstraintLower, $radiusConstr
     $rLat = $lat + rand(-$maxDegLat, $maxDegLat)/1000;
     $rLon = $lon + rand(-$maxDegLon, $maxDegLon)/1000;
 
+    $obj = [
+        'lat' => $rLat,
+        'lon' => $rLon
+    ];
+    $jsonData = json_encode($obj);
 
     $dist = haversine($lat, $lon, $rLat, $rLon);
 
+
     if ($dist >= $radiusConstraintLower && $dist <= $radiusConstraintUpper) {
-        return $dist;
+        echo("$dist\n");
+        return $jsonData;
     } else {
         $counter = 0;
         while ($dist < $radiusConstraintLower || $dist > $radiusConstraintUpper) {
@@ -29,6 +36,12 @@ function randomize_geoLocation($lat, $lon, $radiusConstraintLower, $radiusConstr
             $rLat = $lat + rand(-$maxDegLat, $maxDegLat)/1000;
             $rLon = $lon + rand(-$maxDegLon, $maxDegLon)/1000;
 
+            $obj = [
+                'lat' => $rLat,
+                'lon' => $rLon
+            ];
+            $jsonData = json_encode($obj);
+
             $dist = haversine($lat, $lon, $rLat, $rLon);
 
             $counter++;
@@ -36,9 +49,11 @@ function randomize_geoLocation($lat, $lon, $radiusConstraintLower, $radiusConstr
                 throw new Exception("Cannot Find Lat/Lon Within Boundaries");
             }
         }
-        return $dist;
+        echo("$dist\n");
+        return $jsonData;
     }
-    return $dist;
+    echo("$dist\n");
+    return $jsonData;
 }
 
 /**
