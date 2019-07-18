@@ -9,13 +9,13 @@ Download the Source Code and put into a text editor of your choice.
 
 ### Prerequisites
 
--PHP
+PHP
 
-### Using the Function
+## Using the Function
 
 Add this function to a script, or program to receive your data.
 
-#####Example 1:
+###Example 1:
 ```
 $res = [];
 
@@ -25,7 +25,7 @@ for($i = 0; $i < 20; $i++) {
 
 print_r($res);
 ```
-#####Output (Results will vary):
+###Output (Results will vary):
 ```
 Array
 (
@@ -52,7 +52,7 @@ Array
 )
 
 ```
-#####Example 2:
+###Example 2:
 ```
 $lat = readline('Enter Starting Latitude: ');
 $lng = readline('Enter Starting Longitude: ');
@@ -68,7 +68,7 @@ for($i = 0; $i < $iterations; $i++) {
 
 print_r($res);
 ```
-#####Output:
+###Output:
 ```
 Enter Starting Latitude: -38.71035
 Enter Starting Longitude: 20.95537
@@ -99,7 +99,7 @@ Array
     [19] => {"lat":-38.47935,"lng":20.815369999999998}
 )
 ```
-####Troubleshooting:
+###Troubleshooting:
 
 If given parameters that cannot produce a location, the program will try 10 times to find a random set <br>
 of Latitude and Longitude that satisfies the conditions. If if is not able to produce a random set for those <br>
