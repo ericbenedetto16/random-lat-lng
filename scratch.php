@@ -82,6 +82,3 @@ function haversine($lat1, $lng1, $lat2, $lng2)
 
     return $d;
 }
-
-
-echo(randomize_geoLocation(-38.71035, 20.95537, 5, 20));
